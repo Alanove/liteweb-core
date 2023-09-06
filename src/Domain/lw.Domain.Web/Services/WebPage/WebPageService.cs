@@ -81,6 +81,7 @@ public class WebPageService : IWebPageService
         ret.Pages = query.Include(p => p.User)
             .Include(p => p.Parent)
             .OrderByDescending(p => p.PublishDate)
+            .ThenByDescending(p => p.DateCreated)
             .Skip(pageSize * pageNumber)
             .Take(pageSize)
             .Select(p => new PagesDTO
