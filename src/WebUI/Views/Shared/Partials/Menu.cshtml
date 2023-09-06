@@ -1,0 +1,12 @@
+﻿@model Menu;
+@if (Model != null && Model.Children != null)
+{
+    <ul>
+        @foreach (var menu in Model.Children)
+        {
+            <li @(menu.IsCurrent ? "class=current" : "")><a href="/@menu.Url">@menu.Title</a>
+                <partial name="Partials/Menu" model="menu" />
+            </li>
+        }
+    </ul>
+}

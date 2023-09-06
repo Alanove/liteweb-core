@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Cte\Cte.csproj" />
+    <ProjectReference Include="..\..\Core\Data\Data.csproj" />
+    <ProjectReference Include="..\..\Core\Utils\Utils.csproj" />
+    <ProjectReference Include="..\..\Infra\Data\DataContext.csproj" />
+    <ProjectReference Include="..\lw.Domain.Models\lw.Domain.Models.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+﻿@model WebPageVM;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="@Model.Description" />
+    <title>@Model.PageTitle</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+</head>
+<body>
+    <main>
+        <partial name="Partials/Header" model="Model" />
+        <section class="content">
+            @RenderBody();
+            <partial name="Partials/PageChildren" model="Model.CurrentMenu?.Page" />
+        </section>
+        <footer>
+            <p>&copy; @DateTime.Now.Year @Model.Website?.Name. All rights reserved.</p>
+        </footer>
+    </main>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,11 @@
+﻿global using lw.Domain.Models;
+global using System.ComponentModel.DataAnnotations;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Text;
+global using System.Threading.Tasks;
+global using lw.Core.Data;
+global using lw.Infra.DataContext;
+global using lw.Core.Utils.Crypto;
+global using lw.Core.Utils;
+global using Microsoft.AspNetCore.Http;

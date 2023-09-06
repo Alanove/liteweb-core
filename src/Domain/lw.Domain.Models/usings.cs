@@ -1,0 +1,10 @@
+﻿global using lw.Core.Cte;
+global using lw.Core.Cte.Enum;
+global using lw.Core.Data;
+global using System;
+global using System.Collections.Generic;
+global using System.Linq;
+global using System.Numerics;
+global using System.Text;
+global using System.Threading.Tasks;
+global using System.ComponentModel.DataAnnotations;

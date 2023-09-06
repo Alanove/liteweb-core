@@ -1,0 +1,85 @@
+﻿@import "plugins/normalize.scss";
+@import "lib/_variables.scss";
+
+body {
+	color: $primary-color;
+	font-family: $font-family;
+	font-size: $base-font-size;
+
+	main {
+		header {
+			background-color: $primary-color;
+			color: $white;
+			padding: 1rem;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			nav {
+				ul {
+					list-style: none;
+					display: flex;
+
+					>li {
+						margin-right: 1rem;
+						position:relative;
+
+						&:last-child {
+							margin-right: 0;
+						}
+
+						a {
+							text-decoration: none;
+							color: $white;
+						}
+
+						&.current {
+							a {
+								text-decoration: underline;
+							}
+						}
+						>ul{
+							display:none;
+							position:absolute;
+						}
+						&:hover{
+							>ul{
+								display:block;
+								background:$primary-color;
+								width:300px;
+								li{
+								
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		footer {
+			background-color: $primary-color;
+			color: white;
+			text-align: center;
+			padding: 0.5rem;
+		}
+	}
+}
+
+
+@media (max-width: $mobile-breakpoint) {
+	main {
+		header {
+			nav {
+				ul {
+					flex-direction: column;
+
+					li {
+						margin-right: 0;
+						margin-bottom: 0.5rem;
+					}
+				}
+			}
+		}
+	}
+}

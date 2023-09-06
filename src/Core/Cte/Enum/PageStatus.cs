@@ -1,0 +1,13 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace lw.Core.Cte.Enum;
+
+public enum PageStatus
+{
+	Hidden = 0,
+	Published = 1,
+}

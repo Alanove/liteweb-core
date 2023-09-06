@@ -1,0 +1,10 @@
+﻿Init Migrations:
+dotnet ef migrations add Init -s ../../lw.Api
+
+Update Database:
+dotnet ef database update -s ../../lw.Api
+
+
+Add-Migration MigrationName
+Update-Database
+

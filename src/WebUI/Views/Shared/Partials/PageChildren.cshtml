@@ -1,0 +1,13 @@
+﻿@model Page;
+@if (Model != null && Model.Children != null)
+{
+    <ul>
+        @foreach (var p in Model.Children)
+        {
+            <li>
+                <a href="@Model.Url/@p.Url">@p.Title</a>
+                <p>@p.Description</p>
+            </li>
+        }
+    </ul>
+}
