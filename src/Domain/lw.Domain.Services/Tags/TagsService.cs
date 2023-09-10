@@ -1,13 +1,16 @@
 ﻿
 
 using lw.Domain.Models;
+using Microsoft.Data.SqlClient;
+using Npgsql;
 
 namespace lw.Domain.Services;
 public class TagsService : ITagsService
 {
 	#region internal variables
 	private readonly Repository<Tag> _tags;
-	private readonly AppDbContext _context;
+    private readonly Repository<Page> _pages;
+    private readonly AppDbContext _context;
 	#endregion
 
 	public TagsService(AppDbContext dbContext,
@@ -19,7 +22,8 @@ public class TagsService : ITagsService
 
 	public Tag? GetTag(string tagName)
 	{
-		return this._tags.Where(t => t.Name == tagName || t.Url == tagName).FirstOrDefault();
+		tagName = tagName.ToLower();
+		return this._tags.Where(t => t.Name.ToLower() == tagName || t.Url.ToLower() == tagName).FirstOrDefault();
 	}
 	public List<Tag> AddTags(List<Tag> tags)
 	{
@@ -43,5 +47,12 @@ public class TagsService : ITagsService
 	public void DeleteTag(Tag tag)
 	{
 		this._tags.Delete(tag);
+	}
+
+	public IQueryable<Page> GetPages(Tag tag)
+	{
+        var query = _context.Pages
+			.FromSqlRaw<Page>($"select * from \"Pages\" where \"Id\" in (select \"PagesId\" from \"PageTag\" pt where pt.\"TagsId\" = '{tag.Id}') ");
+		return query;
 	}
 }

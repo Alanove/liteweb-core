@@ -8,4 +8,6 @@ public interface ITagsService
 
     IEnumerable<Tag> GetTags();
 	void DeleteTag(Tag tag);
+
+	IQueryable<Page> GetPages(Tag tag);
 }

@@ -8,6 +8,7 @@ namespace lw.Domain.Web;
 
 public class WebPageVM
 {
+    string? _title = null;
     public Website Website { get; set; } = null!;
     public Page? CurrentPage { get; set; } = null!;
     public Menu? CurrentMenu { get; set; }  = null!;
@@ -18,14 +19,24 @@ public class WebPageVM
     {
         get
         {
-            return $"{CurrentPage?.Title}{(CurrentPage == null? "": " - ")}{Website?.Name}";
+            return $"{Title}{(Title == null? "": " - ")}{Website?.Name}";
         }
+        
     }
-    public string Title
+    public string? Title
     {
         get
         {
-            return CurrentPage?.Title;
+            if (_title != null)
+                return _title;
+            if(CurrentPage != null && CurrentPage.Title != null)
+                _title = CurrentPage.Title;
+
+            return _title;
+        }
+        set
+        {
+            _title = value;
         }
     }
     public string? Description

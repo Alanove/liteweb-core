@@ -1,6 +1,7 @@
 ﻿using lw.Domain.Services;
 using lw.Domain.Webl;
 using Microsoft.EntityFrameworkCore;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace lw.Domain.Web;
 
@@ -8,6 +9,7 @@ public class WebPageService : IWebPageService
 {
     #region internal variables
     private readonly IPagesService _pagesService;
+    private readonly ITagsService _tagsService;
     private readonly IWebsiteService _websiteService;
     private readonly IMenuService _menuService;
     private readonly IHttpContextAccessor _httpContextAccessor;
@@ -17,17 +19,19 @@ public class WebPageService : IWebPageService
 
     public WebPageService(AppDbContext dbContext,
         IPagesService pagesService,
+        ITagsService tagsService,
         IWebsiteService websiteService,
         IMenuService menuService,
         IHttpContextAccessor httpContextAccessor)
     {
         _pagesService = pagesService;
+        _tagsService = tagsService;
         _websiteService = websiteService;
         _menuService = menuService;
         _httpContextAccessor = httpContextAccessor;
     }
 
-    public WebPageVM CurrentWebPage(string? pageUrl = null, int pageNumber = 0, int pageSize = 30)
+    public WebPageVM CurrentWebPage(string? url = null, int pageNumber = 0, int pageSize = 30)
     {
         var vm = new WebPageVM
         {
@@ -38,9 +42,9 @@ public class WebPageService : IWebPageService
         {
             vm.CurrentPage = vm.CurrentMenu.Page;
         }
-        else if (pageUrl != null)
+        else if (url != null)
         {
-            vm.CurrentPage = _pagesService.GetPageByUrl(pageUrl);
+            vm.CurrentPage = _pagesService.GetPageByUrl(url);
         }
         if (vm.CurrentPage != null && vm.CurrentPage.Content != null)
         {
@@ -60,21 +64,21 @@ public class WebPageService : IWebPageService
                 SetCurrentMenu(vm.Website.FooterMenu, vm.CurrentMenu.Id);
             }
         }
+        var query = _pagesService.GetPages();
 
-        vm.ChildPages = GetChildren(vm.CurrentPage, pageNumber, pageSize);
+        if (vm.CurrentPage != null)
+        {
+            query = query.Where(p => p.ParentId == vm.CurrentPage.Id);
+        }
+        vm.ChildPages = GetChildren(query, pageNumber, pageSize);
         return vm;
     }
-    public PagesListVM GetChildren(Page? page, int pageNumber, int pageSize)
+    public PagesListVM GetChildren(IQueryable<Page> query, int pageNumber, int pageSize)
     {
         var ret = new PagesListVM();
-        var query = _pagesService.GetPages()
-           .Where(p => p.Status == lw.Core.Cte.Enum.PageStatus.Published);
-        if (page != null)
-        {
-            query = query.Where(p => p.ParentId == page.Id);
-        }
+        query = query.Where(p => p.Status == lw.Core.Cte.Enum.PageStatus.Published);
         ret.TotalCount = query.Count();
-        ret.HasMore = pageNumber * pageSize < ret.TotalCount;
+        ret.HasMore = (pageNumber + 1)* pageSize < ret.TotalCount;
 
         ret.PageNumber = pageNumber;
         ret.PageSize = pageSize;
@@ -94,10 +98,41 @@ public class WebPageService : IWebPageService
                 PublishDate = p.PublishDate
             })
             .ToList();
-    
+
         return ret;
     }
-public bool SetCurrentMenu(Menu menu, Guid currentMenuId)
+
+    public WebPageVM CurrentWebPageFromTag(string tagName, int pageNumber = 0, int pageSize = 30)
+    {
+        var vm = new WebPageVM
+        {
+            Website = _websiteService.CurrentWebsite(),
+            CurrentMenu = _menuService.CurrentMenu()
+        };
+        if (vm.CurrentMenu != null)
+        {
+            if (vm.Website.HeaderMenu != null)
+            {
+                vm.Website.HeaderMenu.Children = vm.Website.HeaderMenu.Children.OrderBy(m => m.Sorting).ToList();
+                SetCurrentMenu(vm.Website.HeaderMenu, vm.CurrentMenu.Id);
+            }
+
+            if (vm.Website.FooterMenu != null)
+            {
+                vm.Website.FooterMenu.Children = vm.Website.FooterMenu.Children.OrderBy(m => m.Sorting).ToList();
+                SetCurrentMenu(vm.Website.FooterMenu, vm.CurrentMenu.Id);
+            }
+        }
+        var tag = _tagsService.GetTag(tagName);
+        if(tag != null)
+        {
+            vm.Title = "#" + tag.Name;
+            vm.ChildPages = GetChildren(_tagsService.GetPages(tag), pageNumber, pageSize);
+        }
+        return vm;
+    }
+
+    public bool SetCurrentMenu(Menu menu, Guid currentMenuId)
 {
     foreach (Menu childMenu in menu.Children)
     {
