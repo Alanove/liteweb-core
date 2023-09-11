@@ -12,6 +12,7 @@ public class WebPageService : IWebPageService
     private readonly ITagsService _tagsService;
     private readonly IWebsiteService _websiteService;
     private readonly IMenuService _menuService;
+    private readonly IUsersService _usersService;
     private readonly IHttpContextAccessor _httpContextAccessor;
 
     User? _currentLoggedInUser;
@@ -22,13 +23,15 @@ public class WebPageService : IWebPageService
         ITagsService tagsService,
         IWebsiteService websiteService,
         IMenuService menuService,
-        IHttpContextAccessor httpContextAccessor)
+        IHttpContextAccessor httpContextAccessor,
+        IUsersService usersService)
     {
         _pagesService = pagesService;
         _tagsService = tagsService;
         _websiteService = websiteService;
         _menuService = menuService;
         _httpContextAccessor = httpContextAccessor;
+        _usersService = usersService;
     }
 
     public WebPageVM CurrentWebPage(string? url = null, int pageNumber = 0, int pageSize = 30)
@@ -73,34 +76,7 @@ public class WebPageService : IWebPageService
         vm.ChildPages = GetChildren(query, pageNumber, pageSize);
         return vm;
     }
-    public PagesListVM GetChildren(IQueryable<Page> query, int pageNumber, int pageSize)
-    {
-        var ret = new PagesListVM();
-        query = query.Where(p => p.Status == lw.Core.Cte.Enum.PageStatus.Published);
-        ret.TotalCount = query.Count();
-        ret.HasMore = (pageNumber + 1)* pageSize < ret.TotalCount;
 
-        ret.PageNumber = pageNumber;
-        ret.PageSize = pageSize;
-        ret.Pages = query.Include(p => p.User)
-            .Include(p => p.Parent)
-            .OrderByDescending(p => p.PublishDate)
-            .ThenByDescending(p => p.DateCreated)
-            .Skip(pageSize * pageNumber)
-            .Take(pageSize)
-            .Select(p => new PagesDTO
-            {
-                Id = p.Id,
-                Title = p.Title,
-                FullUrl = p.FullUrl,
-                ThumbImage = p.ThumbImage,
-                UserName = p.User.UserName,
-                PublishDate = p.PublishDate
-            })
-            .ToList();
-
-        return ret;
-    }
 
     public WebPageVM CurrentWebPageFromTag(string tagName, int pageNumber = 0, int pageSize = 30)
     {
@@ -124,28 +100,87 @@ public class WebPageService : IWebPageService
             }
         }
         var tag = _tagsService.GetTag(tagName);
-        if(tag != null)
+        if (tag != null)
         {
             vm.Title = "#" + tag.Name;
             vm.ChildPages = GetChildren(_tagsService.GetPages(tag), pageNumber, pageSize);
         }
         return vm;
     }
-
-    public bool SetCurrentMenu(Menu menu, Guid currentMenuId)
-{
-    foreach (Menu childMenu in menu.Children)
+    public WebPageVM CurrentWebPageFromUser(string userName, int pageNumber = 0, int pageSize = 30)
     {
-        if (childMenu.Id == currentMenuId)
+        var vm = new WebPageVM
         {
-            childMenu.IsCurrent = true;
-            return true;
-        }
-        else
+            Website = _websiteService.CurrentWebsite(),
+            CurrentMenu = _menuService.CurrentMenu()
+        };
+        if (vm.CurrentMenu != null)
         {
-            childMenu.IsCurrent = SetCurrentMenu(childMenu, currentMenuId);
+            if (vm.Website.HeaderMenu != null)
+            {
+                vm.Website.HeaderMenu.Children = vm.Website.HeaderMenu.Children.OrderBy(m => m.Sorting).ToList();
+                SetCurrentMenu(vm.Website.HeaderMenu, vm.CurrentMenu.Id);
+            }
+
+            if (vm.Website.FooterMenu != null)
+            {
+                vm.Website.FooterMenu.Children = vm.Website.FooterMenu.Children.OrderBy(m => m.Sorting).ToList();
+                SetCurrentMenu(vm.Website.FooterMenu, vm.CurrentMenu.Id);
+            }
         }
+        var user = _usersService.GetUser(userName);
+        if (user != null)
+        {
+            vm.Title = user.UserName;
+            vm.ChildPages = GetChildren(_usersService.GetPages(user), pageNumber, pageSize);
+        }
+        return vm;
     }
-    return false;
-}
+
+    #region Helpers
+    public PagesListVM GetChildren(IQueryable<Page> query, int pageNumber, int pageSize)
+    {
+        var ret = new PagesListVM();
+        query = query.Where(p => p.Status == lw.Core.Cte.Enum.PageStatus.Published);
+        ret.TotalCount = query.Count();
+        ret.HasMore = (pageNumber + 1) * pageSize < ret.TotalCount;
+
+        ret.PageNumber = pageNumber;
+        ret.PageSize = pageSize;
+        ret.Pages = query.Include(p => p.User)
+            .Include(p => p.Parent)
+            .OrderByDescending(p => p.PublishDate)
+            .ThenByDescending(p => p.DateCreated)
+            .Skip(pageSize * pageNumber)
+            .Take(pageSize)
+            .Select(p => new PagesDTO
+            {
+                Id = p.Id,
+                Title = p.Title,
+                FullUrl = p.FullUrl,
+                ThumbImage = p.ThumbImage,
+                UserName = p.User.UserName,
+                PublishDate = p.PublishDate
+            })
+            .ToList();
+
+        return ret;
+    }
+    public bool SetCurrentMenu(Menu menu, Guid currentMenuId)
+    {
+        foreach (Menu childMenu in menu.Children)
+        {
+            if (childMenu.Id == currentMenuId)
+            {
+                childMenu.IsCurrent = true;
+                return true;
+            }
+            else
+            {
+                childMenu.IsCurrent = SetCurrentMenu(childMenu, currentMenuId);
+            }
+        }
+        return false;
+    }
+    #endregion
 }

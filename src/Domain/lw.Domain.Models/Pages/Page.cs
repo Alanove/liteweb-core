@@ -18,7 +18,7 @@ public class Page: TrackedEntity
 	public string? Image { get; set; } = null!;
     [MaxLength(256)]
     public string? PafeFile { get; set; } = null!;
-    public DateTime? PublishDate { get; set; } = DateTime.UtcNow;
+    public DateTime PublishDate { get; set; } = DateTime.UtcNow;
 	public int? Ranking { get; set; } = 10000;
 	public int? Views { get; set; } = 0;
 	public double? UserRating { get; set; } = 0;

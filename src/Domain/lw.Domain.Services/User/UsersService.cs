@@ -75,7 +75,12 @@ public class UsersService : IUsersService
         }
         return false;
 	}
-
+    public IQueryable<Page> GetPages(User user)
+    {
+        var query = _context.Pages
+            .FromSqlRaw<Page>($"select * from \"Pages\" where \"CreatedBy\"='{user.Id}'");
+        return query;
+    }
     #region helpers
     public string GenerateHash(User user, string password)
     {

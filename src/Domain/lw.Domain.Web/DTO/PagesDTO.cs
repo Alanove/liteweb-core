@@ -13,5 +13,5 @@ public class PagesDTO
     public string? FullUrl { get; set; } = null!;
     public string? ThumbImage { get; set; } = null!;
     public string? UserName { get; set; } = null!;
-    public DateTime? PublishDate { get; set; }
+    public DateTime PublishDate { get; set; }
 }

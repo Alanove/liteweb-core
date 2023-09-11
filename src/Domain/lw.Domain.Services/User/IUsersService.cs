@@ -8,4 +8,6 @@ public interface IUsersService
 	public UserProperties AddUserWithProperties(UserProperties properties);
 	public bool ValidateCredentials(string userName, string password);
     public User? CurrentLoggedInUser { get; }
+
+	public IQueryable<Page> GetPages(User user);
 }
