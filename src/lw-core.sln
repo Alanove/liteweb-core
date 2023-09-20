@@ -33,6 +33,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lw.Domain.Web", "Domain\lw.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lebanoninapicture", "..\..\lebanoninapicture.com\Lebanoninapicture.csproj", "{2D1E8E0C-A7AA-4322-A82D-406D5203E3C5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Admin", "Admin", "{EB872FF4-D9F2-4DE1-948C-3E294590F358}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminUI", "Admin\AdminUI\AdminUI.csproj", "{8951E894-704B-4934-ACD1-6F53D88AC81A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,10 @@ Global
 		{2D1E8E0C-A7AA-4322-A82D-406D5203E3C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D1E8E0C-A7AA-4322-A82D-406D5203E3C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D1E8E0C-A7AA-4322-A82D-406D5203E3C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8951E894-704B-4934-ACD1-6F53D88AC81A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8951E894-704B-4934-ACD1-6F53D88AC81A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8951E894-704B-4934-ACD1-6F53D88AC81A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8951E894-704B-4934-ACD1-6F53D88AC81A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -97,6 +105,7 @@ Global
 		{05B9304D-A658-491C-A3AC-7936405AA181} = {C0B28DD7-06FB-43D8-AF30-BAA916C05986}
 		{4EBFE5BD-4F81-4760-886B-18DA125318C9} = {ED08643A-AD1A-4A90-8956-B10B542B7046}
 		{972D29AB-133B-4B4D-B61B-745F8FE08340} = {C8BF9992-416F-40A3-A269-63BDD02B681F}
+		{8951E894-704B-4934-ACD1-6F53D88AC81A} = {EB872FF4-D9F2-4DE1-948C-3E294590F358}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3808A532-9F6A-4965-9853-6E74DD83BBE3}

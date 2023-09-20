@@ -1,4 +1,5 @@
-﻿using lw.Domain.Services;
+﻿using lw.Domain.Models;
+using lw.Domain.Services;
 using lw.Domain.Webl;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -103,6 +104,7 @@ public class WebPageService : IWebPageService
         if (tag != null)
         {
             vm.Title = "#" + tag.Name;
+            vm.Description = $"All content with tag {tag.Name}";
             vm.ChildPages = GetChildren(_tagsService.GetPages(tag), pageNumber, pageSize);
         }
         return vm;
@@ -132,6 +134,7 @@ public class WebPageService : IWebPageService
         if (user != null)
         {
             vm.Title = user.UserName;
+            vm.Description = $"All content submitted by {user.UserName}";
             vm.ChildPages = GetChildren(_usersService.GetPages(user), pageNumber, pageSize);
         }
         return vm;

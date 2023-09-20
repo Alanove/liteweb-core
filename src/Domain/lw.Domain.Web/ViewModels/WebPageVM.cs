@@ -8,7 +8,8 @@ namespace lw.Domain.Web;
 
 public class WebPageVM
 {
-    string? _title = null;
+    string? _title = null,
+        _description = null;
     public Website Website { get; set; } = null!;
     public Page? CurrentPage { get; set; } = null!;
     public Menu? CurrentMenu { get; set; }  = null!;
@@ -43,11 +44,22 @@ public class WebPageVM
     {
         get
         {
-            if(CurrentPage != null && !String.IsNullOrWhiteSpace(CurrentPage.Description))
+            if (_description == null)
             {
-                return CurrentPage.Description;
+                if (CurrentPage != null && !String.IsNullOrWhiteSpace(CurrentPage.Description))
+                {
+                    _description = CurrentPage.Description;
+                }
+                else
+                {
+                    _description = Website.Description;
+                }
             }
-            return Website.Description;
+            return _description;
+        }
+        set
+        {
+            _description = value;
         }
     }
 }
