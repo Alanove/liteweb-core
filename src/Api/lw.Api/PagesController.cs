@@ -1,4 +1,4 @@
-namespace lw.Api.Controllers;
+namespace lw.Api;
 
 [ApiController]
 [Route("api/[controller]")]

@@ -1,11 +1,11 @@
 ﻿@model WebPageVM;
 <header>
     <a href="/"><img src="/images/logo.png" alt="@Model.Website.Name"/></a>
-    <partial name="Search" />
+    <partial name="Partials/Search" />
     <nav>
         <button>Toggle Menu</button>
         <nav>
-            <partial name="Menu" model="Model.Website.HeaderMenu" />
+            <partial name="Partials/Menu" model="Model.Website.HeaderMenu" />
         </nav>
     </nav>
 </header>

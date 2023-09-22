@@ -19,7 +19,9 @@ public class WebsiteService : IWebsiteService
     }
     public Website? GetWebsite(string domainName)
     {
-        return this._websites.Where(w => w.Domain == domainName).FirstOrDefault();
+        return this._websites.Where(w => w.Domain == domainName || 
+            (w.DomainAliases !=null && w.DomainAliases.Contains(domainName))
+        ).FirstOrDefault();
     }
     public Website CurrentWebsite()
     {
@@ -35,5 +37,23 @@ public class WebsiteService : IWebsiteService
         this._websites.Add(website);
         this._websites.SaveChanges();
         return website;
+    }
+    public bool AddAlias(string website, string alias)
+    {
+        Website? site = this._websites.Where(w => w.Name.ToLower() == website.ToLower()).FirstOrDefault();
+        if (site != null)
+            return AddAlias(site, alias);
+        return false;
+    }
+    public bool AddAlias(Website website, string alias)
+    {
+        if (website.DomainAliases == null)
+            website.DomainAliases = new List<string>();
+        if (!website.DomainAliases.Contains(alias))
+        {
+            website.DomainAliases.Add(alias);
+            _websites.SaveChanges();
+        }
+        return true;
     }
 }

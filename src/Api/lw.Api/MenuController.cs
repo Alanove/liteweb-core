@@ -1,14 +1,14 @@
-namespace lw.Api.Controllers;
+namespace lw.Api;
 
 [ApiController]
 [Route("api/[controller]")]
 [Authorize]
 public class MenuController : ControllerBase
 {
-	private readonly ILogger<PagesController> _logger;
+	private readonly ILogger<MenuController> _logger;
 	private readonly IMenuService _menuService;
 
-	public MenuController(ILogger<PagesController> logger, 
+	public MenuController(ILogger<MenuController> logger, 
 		IMenuService menuService)
 	{
 		_logger = logger;

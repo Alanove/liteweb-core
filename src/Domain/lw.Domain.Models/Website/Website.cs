@@ -14,6 +14,7 @@ public class Website: TrackedEntity
     public string? Logo{ get; set; } = null!;
     [MaxLength(100)]
     public string? Image{ get; set; } = null!;
+    public List<string>? DomainAliases { get; set; } = null!;
     public virtual Menu? HeaderMenu { get; set; } = null!;
     public virtual Menu? FooterMenu { get; set; } = null!;
     public virtual Page? HomePage { get; set; } = null!;

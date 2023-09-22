@@ -1,14 +1,14 @@
-namespace lw.Api.Controllers;
+namespace lw.Api;
 
 [ApiController]
 [Route("api/[controller]")]
 //[Authorize]
 public class UsersController : ControllerBase
 {
-	private readonly ILogger<PagesController> _logger;
+	private readonly ILogger<UsersController> _logger;
 	private readonly IUsersService _usersService;
 
-	public UsersController(ILogger<PagesController> logger, 
+	public UsersController(ILogger<UsersController> logger, 
 		IUsersService usersService)
 	{
 		_logger = logger;

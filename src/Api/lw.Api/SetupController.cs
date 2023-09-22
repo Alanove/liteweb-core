@@ -1,20 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace lw.Api.Controllers;
-
+namespace lw.Api;
 [ApiController]
 [Route("[controller]")]
 //[Authorize]
 public class SetupController : ControllerBase
 {
-    private readonly ILogger<PagesController> _logger;
+    private readonly ILogger<SetupController> _logger;
     private readonly IUsersService _usersService;
     private readonly IPagesService _pagesService;
     private readonly IWebsiteService _websitesService;
     private readonly IMenuService _menuService;
     private readonly AppDbContext _dbContext;
 
-    public SetupController(ILogger<PagesController> logger,
+    public SetupController(ILogger<SetupController> logger,
         IUsersService usersService,
         IPagesService pagesService,
         IWebsiteService websiteService,
