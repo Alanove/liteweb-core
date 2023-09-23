@@ -1,13 +1,22 @@
-﻿@model Page;
-@if (Model != null && Model.Children != null)
+﻿@model PagesListVM;
+@if (Model != null && Model.Pages != null)
 {
-    <ul>
-        @foreach (var p in Model.Children)
-        {
-            <li>
-                <a href="@Model.Url/@p.Url">@p.Title</a>
-                <p>@p.Description</p>
-            </li>
-        }
-    </ul>
+    int nextPage = Model.PageNumber + 1;
+    @foreach (var p in Model.Pages)
+    {
+        <figure>
+            <time>@p.PublishDate.ToString("MMMM, d, yyyy")</time>
+            <a href="/@p.FullUrl"><img src="/images/pages/@p.Id/@p.ThumbImage" alt="@p.Title" /></a>
+            <figcaption>
+                <a href="@p.FullUrl"><b>@p.Title</b></a>
+                <cite>by <a href="/user/@p.UserName"><b>@p.UserName</b></a></cite>
+            </figcaption>
+        </figure>
+    }
+    if (Model.HasMore)
+    {
+        <div class="load-more">
+            <a href="?pageNumber=@nextPage" data-page="@Model.PageNumber">More</a>
+        </div>
+    }
 }

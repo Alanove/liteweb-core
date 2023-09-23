@@ -1,9 +1,15 @@
-﻿$primary-color: #3498db;
-$secondary-color: #e74c3c;
+﻿$light-green: #009543;
+$red: #E53741;
+$beige: #F7F0ED;
+$white: #FEFEFE;
+$dark-green: #119A4E;
+$black: #222222;
+
+$primary-color: $dark-green;
+$secondary-color: $red;
 
 $font-family: Arial, sans-serif;
 $base-font-size: 14px;
 
-$white: #ffffff;
-
 $mobile-breakpoint: 768px;
+$large-sreen-breakpoint: 1600px;

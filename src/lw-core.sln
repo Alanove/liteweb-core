@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lw.Api", "Api\lw.Api\lw.Api
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lebanoninapicture", "..\..\lebanoninapicture.com\Lebanoninapicture.csproj", "{A092C460-4DAA-45A2-8FBB-AB59D1DDA35F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdentityAppTest1", "Web\IdentityAppTest1\IdentityAppTest1.csproj", "{D0A439F6-EF39-4D21-8255-69556881FF53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +93,10 @@ Global
 		{A092C460-4DAA-45A2-8FBB-AB59D1DDA35F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A092C460-4DAA-45A2-8FBB-AB59D1DDA35F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A092C460-4DAA-45A2-8FBB-AB59D1DDA35F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0A439F6-EF39-4D21-8255-69556881FF53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0A439F6-EF39-4D21-8255-69556881FF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0A439F6-EF39-4D21-8255-69556881FF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0A439F6-EF39-4D21-8255-69556881FF53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

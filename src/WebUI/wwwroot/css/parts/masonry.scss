@@ -1,0 +1,151 @@
+﻿@import "../lib/_variables.scss";
+
+body {
+
+	main {
+
+		section.masonry {
+			display: grid;
+			//grid-template-columns: auto auto auto auto;
+			grid-template-columns: repeat(4, 1fr);
+			//grid-template-rows: auto auto;
+			gap: 4px;
+			grid-auto-flow: dense;
+			padding: 5px;
+
+			&:before,
+			&:after {
+			}
+
+			figure {
+				padding: 0;
+				margin: 0;
+				position: relative;
+				transition: .1s all;
+				height: 300px;
+				z-index: 1;
+				overflow: hidden;
+
+				&.landscape {
+					grid-column: auto / span 2;
+				}
+
+				&.portrait {
+					grid-row: auto / span 2;
+					height: 605px;
+				}
+
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+				}
+
+				time {
+					font-size: .8em;
+					white-space: nowrap;
+					position: absolute;
+					top: -20px;
+					right: 0;
+					opacity: 0;
+					background: rgba(255, 255, 244, 0.9);
+					transition: .3s all;
+					padding: 5px;
+				}
+
+				figcaption {
+					color: $dark-green;
+					position: absolute;
+					bottom: 0;
+					opacity: 0;
+					transition: .3s all;
+					padding: 10px;
+					bottom: -50px;
+					background: rgba(255, 255, 244, 0.9);
+				}
+
+				a {
+					color: $dark-green;
+					text-decoration: none;
+				}
+
+				&:hover {
+					time {
+						opacity: 1;
+						top: 0;
+					}
+
+					figcaption {
+						bottom: 0;
+						opacity: 1;
+					}
+				}
+			}
+
+			.load-more {
+				width: 100%;
+				margin: 50px 0;
+				text-align: center;
+				grid-column: auto / span 4;
+
+				> a {
+					font-size: 2em;
+					padding: 20px 30px;
+					background: $red;
+					color: $white;
+					display: inline-block;
+					margin: auto;
+					width: 200px;
+					text-decoration: none;
+
+					&:hover {
+						background: lighten($red, 20%);
+					}
+				}
+			}
+		}
+	}
+}
+
+
+@media (max-width: $mobile-breakpoint) {
+
+	body {
+		main {
+			section.masonry {
+				grid-template-columns: repeat(2, 1fr);
+
+
+				figure {
+					height: 150px;
+
+					&.landscape {
+					}
+
+					&.portrait {
+						height: 305px;
+					}
+				}
+
+				.load-more {
+					grid-column: auto / span 2;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: $large-sreen-breakpoint) {
+
+	body {
+		main {
+			section.masonry {
+				grid-template-columns: repeat(6, 1fr);
+
+				.load-more {
+					grid-column: auto / span 6;
+				}
+			}
+		}
+	}
+}

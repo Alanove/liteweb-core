@@ -1,0 +1,15 @@
+﻿@model WebPageVM;
+@if (Model.CurrentPage != null)
+{
+    <article>
+        <h1>@Model.CurrentPage.Title</h1>
+        @if (Model.CurrentPage.Image != null)
+        {
+            <img src="/images/pages/@Model.CurrentPage.Id/@Model.CurrentPage.LargeImage" alt="@Model.CurrentPage.Title" />
+        }
+        @Html.Raw(Model.CurrentPage?.Content)
+    </article>
+    <section class="masonry">
+        <partial name="Partials/PageChildren" model="Model.ChildPages" />
+    </section>
+}

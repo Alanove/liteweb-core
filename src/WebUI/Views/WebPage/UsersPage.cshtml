@@ -1,0 +1,5 @@
+﻿@model WebPageVM;
+<h1>@Model.Title</h1>
+<section class="masonry">
+    <partial name="Partials/PageChildren" model="Model.ChildPages" />
+</section>

@@ -3,7 +3,7 @@
 namespace lw.Api;
 [ApiController]
 [Route("[controller]")]
-//[Authorize]
+[Authorize]
 public class SetupController : ControllerBase
 {
     private readonly ILogger<SetupController> _logger;

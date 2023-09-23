@@ -12,10 +12,44 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\images\cedar.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\android-icon-144x144.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\android-icon-192x192.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\android-icon-36x36.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\android-icon-48x48.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\android-icon-72x72.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\android-icon-96x96.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon-114x114.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon-120x120.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon-144x144.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon-152x152.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon-180x180.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon-57x57.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon-60x60.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon-72x72.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon-76x76.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon-precomposed.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\apple-icon.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\browserconfig.xml" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\favicon-16x16.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\favicon-32x32.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\favicon-96x96.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\favicon.ico" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\manifest.json" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\ms-icon-144x144.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\ms-icon-150x150.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\ms-icon-310x310.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\icons\ms-icon-70x70.png" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\LOGO.jpg" />
+    <_ContentIncludedByDefault Remove="wwwroot\images\logo.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="compilerconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Api\lw.Api\lw.Api.csproj" />
     <ProjectReference Include="..\Domain\lw.Domain.Services\lw.Domain.Services.csproj" />
     <ProjectReference Include="..\Domain\lw.Domain.Web\lw.Domain.Web.csproj" />
     <ProjectReference Include="..\Infra\Data\DataContext.csproj" />
@@ -28,6 +62,58 @@
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
+    <Content Update="wwwroot\css\lib\_variables.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\parts\footer.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\parts\header.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\parts\inner-page.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\parts\masonry.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\parts\masonry.min.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\parts\masonry.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\plugins\normalize.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\site.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\site.min.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\css\site.scss">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\favicon.ico">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Update="wwwroot\js\site.js">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -36,10 +122,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\NewFolder\" />
   </ItemGroup>
 
 </Project>

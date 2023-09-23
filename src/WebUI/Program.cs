@@ -1,4 +1,6 @@
 using lw.Core.Cte;
+using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -16,7 +18,7 @@ void configureServices(IServiceCollection services)
 
 	services.AddControllersWithViews();
 
-    services.AddControllers();
+    services.AddControllers().PartManager.ApplicationParts.Add(new AssemblyPart(Assembly.Load("lw.Api"))); ;
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     services.AddEndpointsApiExplorer();
     #region Configure Swagger  

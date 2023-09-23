@@ -1,2 +1,4 @@
 ﻿@model WebPageVM;
-@Html.Raw(Model.CurrentPage?.Content)
+<section class="masonry">
+    <partial name="Partials/PageChildren" model="Model.ChildPages" />
+</section>

@@ -1,8 +1,8 @@
 ﻿@model Menu;
-@if (Model != null && Model.Children != null)
+@if (Model != null && Model.Children != null && Model.Children.Count() > 0)
 {
     <ul>
-        @foreach (var menu in Model.Children)
+        @foreach (var menu in Model.Children.OrderBy(m => m.Sorting))
         {
             <li @(menu.IsCurrent ? "class=current" : "")><a href="/@menu.Url">@menu.Title</a>
                 <partial name="Partials/Menu" model="menu" />

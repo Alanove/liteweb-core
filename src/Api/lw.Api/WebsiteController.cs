@@ -2,7 +2,7 @@ namespace lw.Api;
 
 [ApiController]
 [Route("api/[controller]")]
-//[Authorize]
+[Authorize]
 public class WebsiteController : ControllerBase
 {
 	private readonly ILogger<WebsiteController> _logger;
