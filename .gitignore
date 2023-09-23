@@ -400,3 +400,4 @@ FodyWeavers.xsd
 /src/Testing/DatabaseTesting/appsettings.json
 /src/WebUI/appsettings.Development.json
 /src/WebUI/Controllers/api/SetupLB.cs
+/src/WebUI/wwwroot/images/pages
