@@ -7,9 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Cte\Cte.csproj" />
-    <ProjectReference Include="..\..\Core\Data\Data.csproj" />
-    <ProjectReference Include="..\..\Core\Utils\Utils.csproj" />
     <ProjectReference Include="..\lw.Domain.Models\lw.Domain.Models.csproj" />
     <ProjectReference Include="..\lw.Domain.Services\lw.Domain.Services.csproj" />
   </ItemGroup>

@@ -1,8 +1,19 @@
 using lw.Core.Cte;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
 using System.Reflection;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("WebUIContextConnection") ?? throw new InvalidOperationException("Connection string 'WebUIContextConnection' not found.");
+
+builder.Services.AddDbContext<IdentityContext>(
+    options => options.UseSqlServer(connectionString));
+builder.Services.AddDefaultIdentity<LoginUser>(
+    options => options.SignIn.RequireConfirmedAccount = false)
+    .AddEntityFrameworkStores<IdentityContext>();
+
 var configuration = builder.Configuration;
 
 configureServices(builder.Services);

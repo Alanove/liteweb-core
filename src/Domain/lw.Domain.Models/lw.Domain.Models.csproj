@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Cte\Cte.csproj" />
-    <ProjectReference Include="..\..\Core\Data\Data.csproj" />
+    <ProjectReference Include="..\..\Core\lw.Core.Cte\lw.Core.Cte.csproj" />
+    <ProjectReference Include="..\..\Core\lw.Core.Data\lw.Core.Data.csproj" />
   </ItemGroup>
 
 </Project>

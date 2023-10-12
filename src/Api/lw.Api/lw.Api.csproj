@@ -12,14 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Cte\Cte.csproj" />
-    <ProjectReference Include="..\..\Core\Data\Data.csproj" />
-    <ProjectReference Include="..\..\Core\Utils\Utils.csproj" />
     <ProjectReference Include="..\..\Domain\lw.Domain.Models\lw.Domain.Models.csproj" />
     <ProjectReference Include="..\..\Domain\lw.Domain.Services\lw.Domain.Services.csproj" />
     <ProjectReference Include="..\..\Domain\lw.Domain.Web\lw.Domain.Web.csproj" />
-    <ProjectReference Include="..\..\Infra\Data\DataContext.csproj" />
-    <ProjectReference Include="..\..\Infra\Security\Security.csproj" />
+    <ProjectReference Include="..\..\Infra\lw.Infra.Security\lw.Infra.Security.csproj" />
   </ItemGroup>
 
 </Project>

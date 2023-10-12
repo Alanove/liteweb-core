@@ -53,6 +53,7 @@
     <ProjectReference Include="..\Domain\lw.Domain.Services\lw.Domain.Services.csproj" />
     <ProjectReference Include="..\Domain\lw.Domain.Web\lw.Domain.Web.csproj" />
     <ProjectReference Include="..\Infra\Data\DataContext.csproj" />
+    <ProjectReference Include="..\Infra\lw.Identity\lw.Identity.csproj" />
     <ProjectReference Include="..\Infra\Security\Security.csproj" />
   </ItemGroup>
 
@@ -117,10 +118,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="7.0.11" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.11">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.11">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="7.0.10" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 

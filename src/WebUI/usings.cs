@@ -10,3 +10,5 @@ global using lw.Domain.Web;
 global using lw.Infra.Security;
 global using Microsoft.AspNetCore.Authentication;
 global using Microsoft.OpenApi.Models;
+global using lw.Identity;
+global using lw.Core.Utils;

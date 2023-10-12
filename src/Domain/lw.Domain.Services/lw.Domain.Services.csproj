@@ -11,10 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Cte\Cte.csproj" />
-    <ProjectReference Include="..\..\Core\Data\Data.csproj" />
-    <ProjectReference Include="..\..\Core\Utils\Utils.csproj" />
-    <ProjectReference Include="..\..\Infra\Data\DataContext.csproj" />
+    <ProjectReference Include="..\..\Infra\lw.Infra.Data\lw.Infra.DataContext.csproj" />
     <ProjectReference Include="..\lw.Domain.Models\lw.Domain.Models.csproj" />
   </ItemGroup>
 
