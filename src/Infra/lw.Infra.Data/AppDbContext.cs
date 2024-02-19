@@ -1,13 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace lw.Infra.DataContext;
-public partial class AppDbContext : DbContext
+public partial class AppDbContext : IdentityDbContext<User>
 {
     protected readonly DbContextOptions<AppDbContext> _options;
 
-    public AppDbContext()
-    {
-    }
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
     {
@@ -30,7 +28,6 @@ public partial class AppDbContext : DbContext
 
         base.OnModelCreating(modelBuilder);
     }
-    public virtual DbSet<User> Users { get; set; }
     public virtual DbSet<UserProperties> UserProperties { get; set; }
     public virtual DbSet<Page> Pages { get; set; }
     public virtual DbSet<Tag> Tags { get; set; }

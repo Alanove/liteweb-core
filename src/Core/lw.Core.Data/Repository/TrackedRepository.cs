@@ -5,12 +5,12 @@ using System.Reflection;
 namespace lw.Core.Data;
 public class TrackedRepository<TEntity> : Repository<TEntity> where TEntity : TrackedEntity
 {
-	protected Guid? _currentUserId;
+	protected string? _currentUserId;
 	public TrackedRepository(DbContext context): base(context)
 	{
 		
 	}
-	public TrackedRepository(DbContext context, Guid? currentUserId)
+	public TrackedRepository(DbContext context, string? currentUserId)
 		: base(context) {
         _currentUserId = currentUserId;
 	}

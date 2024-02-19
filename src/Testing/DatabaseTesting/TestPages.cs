@@ -126,8 +126,8 @@ public class TestPages
 
 		var tag = _tagsService.GetTag("hashtag1");
 		var tag1 = _tagsService.GetTag("hashtag2");
-		Assert.AreEqual(tag.Pages.Count(), 2, "Pages should b 2");
-		Assert.AreEqual(tag1.Pages.Count(), 1, "Pages should b 1");
+		Assert.Equals(tag.Pages.Count(), 2);
+		Assert.Equals(tag1.Pages.Count(), 1);
 
 		Assert.Pass();
 	}

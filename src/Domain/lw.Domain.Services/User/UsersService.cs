@@ -6,7 +6,7 @@ namespace lw.Domain.Services;
 public class UsersService : IUsersService
 {
     #region internal variables
-    private readonly TrackedRepository<User> _users;
+    private readonly Repository<User> _users;
     private readonly Repository<UserProperties> _userProperties;
     private readonly AppDbContext _context;
     private readonly IHttpContextAccessor _httpContextAccessor;
@@ -19,7 +19,7 @@ public class UsersService : IUsersService
 		IConfiguration configuration)
     {
         _context = dbContext;
-        _users = new TrackedRepository<User>(_context);
+        _users = new Repository<User>(_context);
         _userProperties = new Repository<UserProperties>(_context);
         _httpContextAccessor = httpContextAccessor;
         _configuration = configuration;
@@ -33,19 +33,19 @@ public class UsersService : IUsersService
       IHttpContextAccessor httpContextAccessor)
     {
         _context = dbContext;
-        _users = new TrackedRepository<User>(_context);
+        _users = new Repository<User>(_context);
         _userProperties = new Repository<UserProperties>(_context);
         _httpContextAccessor = httpContextAccessor;
     }
     public User AddUser(User user)
     {
-        var password = user.Password;
-        user.Password = "";
-        this._users.Add(user);
-        this._users.SaveChanges(); //need to generate userid as its used int the hash
+  //      var password = user.Password;
+  //      user.Password = "";
+  //      this._users.Add(user);
+  //      this._users.SaveChanges(); //need to generate userid as its used int the hash
 
-		user.Password = GenerateHash(user, password == null ? "" : password);
-        this._users.SaveChanges();
+		//user.Password = GenerateHash(user, password == null ? "" : password);
+  //      this._users.SaveChanges();
         
         return user;
     }
@@ -69,10 +69,10 @@ public class UsersService : IUsersService
 	public bool ValidateCredentials(string userName, string password)
 	{
         var user = GetUser(userName);
-        if(user != null)
-        {
-            return user.Password == GenerateHash(user, password);
-        }
+        //if(user != null)
+        //{
+        //    return user.Password == GenerateHash(user, password);
+        //}
         return false;
 	}
     public IQueryable<Page> GetPages(User user)

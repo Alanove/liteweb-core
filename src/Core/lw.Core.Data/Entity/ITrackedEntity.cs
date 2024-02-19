@@ -8,7 +8,7 @@ public interface ITrackedEntity: IBaseEntity
     /// <summary>
     /// Defines who created this entity
     /// </summary>
-    public Guid? CreatedBy { get; set; }
+    public string? CreatedBy { get; set; }
 
     /// <summary>
     /// Created Date 
@@ -18,7 +18,7 @@ public interface ITrackedEntity: IBaseEntity
     /// <summary>
     /// Defines who modified this entity
     /// </summary>
-    public Guid? ModifiedBy { get; set; }
+    public string? ModifiedBy { get; set; }
 
     /// <summary>
     /// Modified Date
@@ -33,7 +33,7 @@ public interface ITrackedEntity: IBaseEntity
     /// <summary>
     /// Defined who deleted this entity
     /// </summary>
-    public Guid? DeletedBy { get; set; }
+    public string? DeletedBy { get; set; }
 
     /// <summary>
     /// If soft deleted, this would hold the deleted date
