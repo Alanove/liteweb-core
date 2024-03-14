@@ -78,7 +78,7 @@ public class UsersService : IUsersService
     public IQueryable<Page> GetPages(User user)
     {
         var query = _context.Pages
-            .FromSqlRaw<Page>($"select * from \"Pages\" where \"CreatedBy\"='{user.Id}'");
+            .FromSql<Page>($"select * from \"Pages\" where \"CreatedBy\"='{user.Id}'");
         return query;
     }
     #region helpers
