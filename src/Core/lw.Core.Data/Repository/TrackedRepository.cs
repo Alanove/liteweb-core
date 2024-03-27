@@ -14,6 +14,15 @@ public class TrackedRepository<TEntity> : Repository<TEntity> where TEntity : Tr
 		: base(context) {
         _currentUserId = currentUserId;
 	}
+	public override IQueryable<TEntity> GetAll()
+	{
+		return base.GetAll().Where(e => e.State != DbState.Deleted);
+	}
+	public IQueryable<TEntity> GetDeleted()
+	{
+		return base.GetAll().Where(e => e.State == DbState.Deleted);
+	}
+
 	public override void Add(TEntity entity)
 	{
 		UpdateRowInfo(entity, DatabaseOperations.Add);

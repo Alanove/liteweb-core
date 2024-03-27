@@ -26,7 +26,23 @@ public class PagesService : IPagesService
 	{
 		return this._pages.GetAll();
 	}
-	public Page AddPage(Page page)
+    public IQueryable<Page> GetPages(int pageSize, int pageNumber,	Guid? parentPageId = null, string searchTerm = "")
+    {
+		var pages = GetPages();
+		if (parentPageId != null)
+			pages = pages.Where(p => p.ParentId == parentPageId.Value);
+		if(searchTerm != "")
+		{
+			pages = pages.Where(p => p.Title.Contains(searchTerm) ||
+	            (p.Description != null && p.Description.Contains(searchTerm)) ||
+                (p.Keywords != null && p.Keywords.Contains(searchTerm)) ||
+                (p.Content != null && p.Content.Contains(searchTerm)));
+		}
+        return pages
+			.Skip(pageSize * pageNumber)
+            .Take(pageSize);
+    }
+    public Page AddPage(Page page)
 	{
 		UpdatePropertyIds(page);
 		this._pages.Add(page);

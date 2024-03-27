@@ -1,6 +1,6 @@
 ﻿using lw.Domain.Models;
 using lw.Domain.Services;
-using lw.Domain.Webl;
+using lw.Domain.Web;
 using Microsoft.EntityFrameworkCore;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
@@ -156,7 +156,7 @@ public class WebPageService : IWebPageService
             .ThenByDescending(p => p.DateCreated)
             .Skip(pageSize * pageNumber)
             .Take(pageSize)
-            .Select(p => new PagesDTO
+            .Select(p => new PageListDTO
             {
                 Id = p.Id,
                 Title = p.Title,

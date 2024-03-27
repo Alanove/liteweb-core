@@ -40,7 +40,13 @@ public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSc
 			userName = credentials.FirstOrDefault();
 			var password = credentials.LastOrDefault();
 
-			if (!_userService.ValidateCredentials(userName, password))
+			var succeed = false;
+			if (userName != null && password != null)
+			{
+				var result = await _userService.TryToSignIn(userName, password, false);
+				succeed = result.Succeeded;
+			}
+			if(!succeed)
 				throw new ArgumentException("Invalid credentials");
 		}
 		catch (Exception ex)

@@ -9,7 +9,7 @@ public static class ServiceCollectionExtension
         {
             services.AddDbContext<AppDbContext>(o =>
             {
-                o.UseLazyLoadingProxies();
+                //o.UseLazyLoadingProxies();
                 switch (databaseSettings.Provider)
                 {
                     case DatabaseProviders.MsSql:
